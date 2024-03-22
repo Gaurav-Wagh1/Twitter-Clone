@@ -10,7 +10,7 @@ class TweetService {
         try {
             const content = data.content;
             let tags = content.match(/#[A-Za-z0-9\-\.\_]+(?:|$)/g);        // to match the hashtag;
-            tags = tags.map((element) => element.substring(1)).map(tag=>tag.toLowerCase());
+            tags = tags.map((element) => element.substring(1).toLowerCase());
             const tweet = await this.tweetRepository.create(data);
             const presentTags = await this.hashtagRepository.findByName(tags);
             const presentTagsTitle = presentTags.map(tag => tag.title);
